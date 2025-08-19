@@ -1,0 +1,38 @@
+version: "3.9"
+
+services:
+  api:
+    build:
+      context: ./Gestion03
+      dockerfile: Dockerfile
+    container_name: gestion03_api
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+    environment:
+      - ConnectionStrings__DefaultConnection=Server=db;Database=Gestion03DB;User=sa;Password=YourStrong!Passw0rd;TrustServerCertificate=True;
+
+  web:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: gestion03_web
+    ports:
+      - "4200:80"
+    depends_on:
+      - api
+
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: gestion03_db
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Passw0rd
+    ports:
+      - "1433:1433"
+    volumes:
+      - sql_data:/var/opt/mssql
+
+volumes:
+  sql_data:

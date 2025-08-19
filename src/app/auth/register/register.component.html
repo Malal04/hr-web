@@ -1,36 +1,88 @@
 <div class="auth">
+  <div class="auth__container">
 
-    <div class="auth__container">
+    <form class="auth__form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
 
-        <form action="" class="auth__form">
-
-            <h2 class="auth__title">Inscription</h2>
-
-            <div class="auth__input">
-                <label for="nom">Nom et Prénom de l'utilisateur</label>
-                <input  type="text" name="nom" id="nom" placeholder=" Entrez votre nom et votre prénom " />
-            </div>
-
-            <div class="auth__input">
-                <label for="email">Adresse e-mail</label>
-                <input  type="email" name="email" id="email" placeholder="Entrez votre adresse e-mail" />
-            </div>
-
-            <div class="auth__input">
-                <label for="password">Mot de passe</label>
-                <input type="password" name="password" id="password" placeholder="Entrez votre mot de passe" />
-            </div>
-
-            <div class="auth__button">
-                <button type="submit">S'inscrire</button>
-            </div>
-
-        </form>
-
-        <div>
-            <p class="auth__text"> Si vous avez deja un compte ? <a class="auth__link" href="/"> Se connecter </a> </p>
+      <!-- En-tête -->
+      <div class="auth__header">
+        <div class="auth__logo">
+          <img src="../../../assets/logo.png" alt="Logo Espace RH" />
         </div>
+        <div class="auth__title">
+          <h2>Inscription à l’Espace RH</h2>
+          <p>Veuillez remplir les informations pour créer un compte.</p>
+        </div>
+      </div>
 
-    </div>
+      <!-- Nom complet -->
+      <div class="auth__input">
+        <label for="nomComplete">Nom complet</label>
+        <input type="text" id="nomComplete" formControlName="nomComplete" placeholder="ex: Jean Dupont" />
+        <div *ngIf="registerForm.get('nomComplete')?.invalid && registerForm.get('nomComplete')?.touched" class="auth__error">
+          Le nom complet est requis.
+        </div>
+      </div>
 
+      <!-- Email -->
+      <div class="auth__input">
+        <label for="email">Email</label>
+        <input type="email" id="email" formControlName="email" placeholder="ex: jean.dupont@mail.com" />
+        <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched" class="auth__error">
+          Email invalide.
+        </div>
+      </div>
+
+      <!-- Téléphone -->
+      <div class="auth__input">
+        <label for="phoneNumber">Téléphone</label>
+        <input type="text" id="phoneNumber" formControlName="phoneNumber" placeholder="ex: 0612345678" />
+      </div>
+
+      <!-- Poste -->
+      <div class="auth__input">
+        <label for="poste">Poste</label>
+        <input type="text" id="poste" formControlName="poste" placeholder="ex: Développeur" />
+      </div>
+
+      <!-- Date d’embauche -->
+      <div class="auth__input">
+        <label for="dateEmbauche">Date d’embauche</label>
+        <input type="date" id="dateEmbauche" formControlName="dateEmbauche" />
+      </div>
+
+      <!-- Salaire -->
+      <div class="auth__input">
+        <label for="salaire">Salaire</label>
+        <input type="number" id="salaire" formControlName="salaire" />
+      </div>
+
+      <!-- Login -->
+      <div class="auth__input">
+        <label for="login">Login</label>
+        <input type="text" id="login" formControlName="login" placeholder="ex: j.dupont" />
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="auth__input">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" formControlName="password" placeholder="•••••••••" />
+        <div *ngIf="registerForm.get('password')?.hasError('minlength') && registerForm.get('password')?.touched" class="auth__error">
+          Minimum 5 caractères.
+        </div>
+      </div>
+
+      <!-- Bouton -->
+      <div class="auth__button">
+        <button type="submit" [disabled]="registerForm.invalid || loading">
+          {{ loading ? 'Inscription...' : 'S’inscrire' }}
+        </button>
+      </div>
+
+      <!-- Messages -->
+      <div *ngIf="message" class="auth__success">{{ message }}</div>
+      <div *ngIf="error" class="auth__error">{{ error }}</div>
+
+    </form>
+
+  </div>
 </div>
