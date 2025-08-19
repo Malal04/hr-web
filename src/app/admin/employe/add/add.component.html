@@ -1,0 +1,142 @@
+<div class="form-container">
+
+  <div class="form-group">
+    <a routerLink="/admin/employes/listes" routerLinkActive="active" class="back-link">
+      ← Retour à la liste des employés
+    </a>
+  </div>
+
+  <div class="form-card">
+
+    <div class="group">
+      <h2>Créer un nouvel employé</h2>
+      <p class="subtitle">
+        Remplissez les informations ci-dessous pour ajouter un nouvel employé.
+      </p>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <!-- Nom complet -->
+      <div class="form-group">
+        <label for="nomComplete">Nom complet</label>
+        <input type="text" id="nomComplete" placeholder="ex: Malal Dupont" formControlName="nomComplete">
+        <div *ngIf="registerForm.get('nomComplete')?.invalid && (registerForm.get('nomComplete')?.touched || registerForm.get('nomComplete')?.dirty)" 
+        class="auth__error">
+          Le nom complet est requis.
+        </div>
+      </div>
+
+      <!-- Email -->
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" id="email" placeholder="ex: malal.dupont@gmail.com" formControlName="email">
+        <div *ngIf="registerForm.get('email')?.invalid && (registerForm.get('email')?.touched || registerForm.get('email')?.dirty)" 
+        class="auth__error">
+          L'email est requis et doit être valide.
+        </div>
+      </div>
+
+      <!-- Téléphone -->
+      <div class="form-group">
+        <label for="phoneNumber">Téléphone</label>
+        <input type="tel" id="phoneNumber" placeholder="ex: +221 77 123 45 67" formControlName="phoneNumber">
+        <div *ngIf="registerForm.get('phoneNumber')?.invalid && (registerForm.get('phoneNumber')?.touched || registerForm.get('phoneNumber')?.dirty)" 
+        class="auth__error">
+          Le téléphone est requis.
+        </div>
+      </div>
+
+      <!-- Poste -->
+      <div class="form-group">
+        <label for="poste">Poste</label>
+        <input type="text" id="poste" placeholder="ex: Manager RH" formControlName="poste">
+        <div *ngIf="registerForm.get('poste')?.invalid && (registerForm.get('poste')?.touched || registerForm.get('poste')?.dirty)" 
+        class="auth__error">
+          Le poste est requis.
+        </div>
+      </div>
+
+      <!-- Date embauche -->
+      <div class="form-group">
+        <label for="dateEmbauche">Date d'embauche</label>
+        <input type="date" id="dateEmbauche" formControlName="dateEmbauche">
+        <div *ngIf="registerForm.get('dateEmbauche')?.invalid && (registerForm.get('dateEmbauche')?.touched || registerForm.get('dateEmbauche')?.dirty)" 
+        class="auth__error">
+          La date d'embauche est requise.
+        </div>
+      </div>
+
+      <!-- Salaire -->
+      <div class="form-group">
+        <label for="salaire">Salaire (FCFA)</label>
+        <input type="number" id="salaire" formControlName="salaire">
+        <div *ngIf="registerForm.get('salaire')?.invalid && (registerForm.get('salaire')?.touched || registerForm.get('salaire')?.dirty)" 
+        class="auth__error">
+          Le salaire est requis.
+        </div>
+      </div>
+
+      <!-- Département -->
+      <div class="form-group">
+        <label for="departementId">Département</label>
+        <select id="departementId" formControlName="departementId">
+          <option value="">-- Sélectionner un département --</option>
+          <option *ngFor="let departement of departements" [value]="departement.id">
+            {{ departement.nom }} ({{ departement.code }})
+          </option>
+        </select>
+        <div *ngIf="registerForm.get('departementId')?.invalid && (registerForm.get('departementId')?.touched || registerForm.get('departementId')?.dirty)" 
+        class="auth__error">
+          Le département est requis.
+        </div>
+      </div>
+
+      <!-- Login -->
+      <div class="form-group">
+        <label for="login">Login</label>
+        <input type="text" id="login" placeholder="ex: malal.dupont" formControlName="login">
+        <div *ngIf="registerForm.get('login')?.invalid && (registerForm.get('login')?.touched || registerForm.get('login')?.dirty)" 
+        class="auth__error">
+          Le login est requis.
+        </div>
+      </div>
+
+      <!-- Mot de passe -->
+      <div class="form-group">
+        <label for="password">Mot de passe</label>
+        <input type="password" id="password" placeholder="ex: malal.dupont" formControlName="password">
+        <div *ngIf="registerForm.get('password')?.invalid && (registerForm.get('password')?.touched || registerForm.get('password')?.dirty)" 
+        class="auth__error">
+          Le mot de passe est requis.
+        </div>
+      </div>
+
+      <!-- Rôle -->
+      <div class="form-group">
+        <label for="role">Rôle</label>
+        <select id="role" formControlName="role">
+          <option value="">-- Sélectionner un rôle --</option>
+          <option value= 1>Admin</option>
+          <option value= 2>Manager</option>
+          <option value= 3>Employee</option>
+        </select>
+        <div *ngIf="registerForm.get('role')?.invalid && (registerForm.get('role')?.touched || registerForm.get('role')?.dirty)" 
+        class="auth__error">
+          Le rôle est requis.
+        </div>
+      </div>
+
+      <!-- Bouton -->
+      <div class="form-group auth_button">
+        <button type="submit" class="btn-save" [disabled]="registerForm.invalid">Enregistrer</button>
+      </div>
+
+    </form>
+
+    <div *ngIf="message" class="auth__error">
+      {{ message }}
+    </div>
+
+  </div>
+
+</div>

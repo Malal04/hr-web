@@ -1,0 +1,47 @@
+<div class="container-employe">
+  <h2>Liste des employés</h2>
+
+  <div *ngIf="loading" class="loading">Chargement...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <table *ngIf="!loading && employees.length > 0">
+    <thead>
+      <tr>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Poste</th>
+        <th>Date Embauche</th>
+        <th>Salaire</th>
+        <th>Département</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let emp of employees">
+        <td>{{ emp.nomComplete }}</td>
+        <td>{{ emp.email }}</td>
+        <td>{{ emp.phoneNumber }}</td>
+        <td>{{ emp.poste }}</td>
+        <td>{{ emp.dateEmbauche | date:'dd/MM/yyyy' }}</td>
+        <td>{{ emp.salaire | number:'1.0-0' }}</td>
+        <td>{{ emp.departementNom }}</td>
+        <td>
+          <button type="button" class="status-btn" (click)="toggleStatus(emp)">
+            <fa-icon [icon]="emp.accountState === AccountState.ACTIVE ? faToggleOn : faToggleOff"></fa-icon>
+          </button>
+          <button type="button" class="edit-btn" (click)="editEmployee(emp)">
+            <fa-icon [icon]="faPen"></fa-icon>
+          </button>
+          <button type="button" class="delete-btn" (click)="deleteEmployee(emp)">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="!loading && employees.length === 0" class="empty">
+    Aucun employé trouvé.
+  </div>
+</div>

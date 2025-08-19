@@ -1,0 +1,97 @@
+<div class="form-container">
+
+  <div class="form-group">
+    <a routerLink="/admin/departements/liste" class="back-link">
+      ← Retour à la liste des départements
+    </a>
+  </div>
+
+  <div class="form-card">
+    <div class="group">
+      <h2>Modifier le département</h2>
+      <p class="subtitle">
+        Mettez à jour les informations du département ci-dessous.
+      </p>
+    </div>
+
+    <form [formGroup]="departementForm" (ngSubmit)="onSubmit()" class="departement-form">
+
+      <!-- Nom -->
+      <div class="form-group">
+        <label for="nom">Nom</label>
+        <input type="text" id="nom" formControlName="nom" placeholder="ex: Ressources Humaines">
+        <div *ngIf="departementForm.get('nom')?.invalid && departementForm.get('nom')?.touched" class="auth__error">
+          Le nom est requis.
+        </div>
+      </div>
+
+      <!-- Code -->
+      <div class="form-group">
+        <label for="code">Code</label>
+        <input type="text" id="code" formControlName="code" placeholder="ex: RH001">
+        <div *ngIf="departementForm.get('code')?.invalid && departementForm.get('code')?.touched" class="auth__error">
+          Le code est requis.
+        </div>
+      </div>
+
+      <!-- Description -->
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" placeholder="Décrire brièvement le département"></textarea>
+      </div>
+
+      <!-- Contact -->
+      <div class="form-group row">
+        <div>
+          <label for="contactEmail">Email de contact</label>
+          <input type="email" id="contactEmail" formControlName="contactEmail" placeholder="ex: contact@entreprise.com">
+          <div *ngIf="departementForm.get('contactEmail')?.invalid && departementForm.get('contactEmail')?.touched" class="auth__error">
+            L'email est requis et valide.
+          </div>
+        </div>
+
+        <div>
+          <label for="contactPhone">Téléphone de contact</label>
+          <input type="tel" id="contactPhone" formControlName="contactPhone" placeholder="ex: +33 1 23 45 67 89">
+          <div *ngIf="departementForm.get('contactPhone')?.invalid && departementForm.get('contactPhone')?.touched" class="auth__error">
+            Le téléphone est requis (min 10 chiffres).
+          </div>
+        </div>
+      </div>
+
+      <!-- Localisation -->
+      <div class="form-group">
+        <label for="location">Localisation</label>
+        <input type="text" id="location" formControlName="location" placeholder="ex: Paris - Siège social">
+        <div *ngIf="departementForm.get('location')?.invalid && departementForm.get('location')?.touched" class="auth__error">
+          La localisation est requise.
+        </div>
+      </div>
+
+      <!-- Budget -->
+      <div class="form-group">
+        <label for="budget">Budget annuel</label>
+        <div class="salary-input">
+          <span>FCFA</span>
+          <input type="number" id="budget" formControlName="budget" placeholder="500000">
+        </div>
+        <div *ngIf="departementForm.get('budget')?.invalid && departementForm.get('budget')?.touched" class="auth__error">
+          Le budget est requis et doit être ≥ 0.
+        </div>
+      </div>
+
+      
+
+      <!-- Bouton -->
+      <div class="form-group auth_button">
+        <button type="submit" class="btn-save" [disabled]="departementForm.invalid || isLoading">
+          {{ isLoading ? 'Chargement...' : 'Enregistrer' }}
+        </button>
+      </div>
+    </form>
+
+    <!-- Messages -->
+    <div *ngIf="message" class="success-message">{{ message }}</div>
+    <div *ngIf="error" class="error-message">{{ error }}</div>
+  </div>
+</div>

@@ -1,0 +1,120 @@
+.auth {
+  background-color: var(--bg-white);
+  background-image: url('../../../../public/res.png');
+  background-size: cover;
+  background-position: center;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+.auth__container {
+  background-color: var(--bg-white);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  width: 480px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.auth__title {
+  font-size: 25px;
+  font-weight: 800;
+  color: var(--text-color);
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.auth__input {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.auth__input label {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--text-color);
+  margin-top: 20px;
+}
+
+.auth__input input {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: 1px solid #e0e0e0;
+  font-size: 16px;
+  color: var(--text-color);
+  margin-top: 10px;
+}
+
+.auth__input input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+}
+
+.auth__button {
+  width: 100%;
+  margin-top: 20px;
+}
+
+.auth__button button {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 8px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--bg-white);
+  background-color: var(--primary-color);
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.auth__button button:hover {
+  background-color: var(--primary-hover);
+}
+
+.auth__text {
+  font-size: 14px;
+  color: var(--text-color);
+  text-align: center;
+  margin-top: 10px;
+}
+
+.auth__link {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.auth__link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+  .auth__container {
+    width: 90%;
+    padding: 15px;
+  }
+
+  .auth__title {
+    font-size: 22px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .auth__container {
+    width: 100%;
+  }
+
+  .auth__title {
+    font-size: 20px;
+  }
+}

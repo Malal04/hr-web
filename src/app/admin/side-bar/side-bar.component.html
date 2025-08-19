@@ -1,0 +1,103 @@
+<div class="sideB">
+    <a routerLink="/admin" routerLinkActive="active" class="brand" (click)="onItemClick()">
+        <span class="text">RH-TD</span>
+    </a>
+
+    <div class="sideBI">
+        <ul class="side-menu top">
+            <li>
+                <a routerLink="/admin" routerLinkActive="active" (click)="onItemClick()">
+                    <fa-icon [icon]="faDashboard"></fa-icon>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+
+            <!-- Departements -->
+            <li class="dropdown-container">
+                <a (click)="toggleDropdown($event)">
+                    <fa-icon [icon]="faDepartments"></fa-icon>
+                    <span class="text">Departements</span>
+                    <fa-icon [icon]="faDropdown" class="dropdown-icon"></fa-icon>
+                </a>
+                <ul class="dropdown">
+                    <li>
+                        <a routerLink="/admin/departements/liste" routerLinkActive="active" (click)="onItemClick()">
+                            <fa-icon [icon]="faList"></fa-icon>
+                            <span>Liste des departements</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/admin/departements/add" routerLinkActive="active" (click)="onItemClick()">
+                            <fa-icon [icon]="faAdd"></fa-icon>
+                            <span>Ajouter un departement</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Employes -->
+            <li class="dropdown-container">
+                <a (click)="toggleDropdown($event)">
+                    <fa-icon [icon]="faEmployees"></fa-icon>
+                    <span class="text">Employes</span>
+                    <fa-icon [icon]="faDropdown" class="dropdown-icon"></fa-icon>
+                </a>
+                <ul class="dropdown">
+                    <li>
+                        <a routerLink="/admin/employes/listes" routerLinkActive="active" (click)="onItemClick()">
+                            <fa-icon [icon]="faList"></fa-icon>
+                            <span>Liste des Employes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/admin/employes/adds" routerLinkActive="active" (click)="onItemClick()">
+                            <fa-icon [icon]="faAddUser"></fa-icon>
+                            <span>Ajouter un Employe</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Taches -->
+            <li class="dropdown-container">
+                <a (click)="toggleDropdown($event)">
+                    <fa-icon [icon]="faTasks"></fa-icon>
+                    <span class="text">Taches</span>
+                    <fa-icon [icon]="faDropdown" class="dropdown-icon"></fa-icon>
+                </a>
+                <ul class="dropdown">
+                    <li>
+                        <a routerLink="/admin/taches/listes" routerLinkActive="active" (click)="onItemClick()">
+                            <fa-icon [icon]="faList"></fa-icon>
+                            <span>Liste des Taches</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/admin/taches/adds" routerLinkActive="active" (click)="onItemClick()">
+                            <fa-icon [icon]="faAdd"></fa-icon>
+                            <span>Ajouter une Tache</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="sideM">
+        <ul class="side-menu">
+            <li>
+                <a routerLink="/admin/profile" routerLinkActive="active" (click)="onItemClick()">
+                    <fa-icon [icon]="faUser"></fa-icon>
+                    <span class="text">Profile</span>
+                </a>
+            </li>
+            <li>
+                <a (click)="onLogout()" class="logout">
+                    <fa-icon [icon]="faLogout"></fa-icon>
+                    <span class="text">Déconnexion</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

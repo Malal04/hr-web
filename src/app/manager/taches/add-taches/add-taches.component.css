@@ -1,0 +1,143 @@
+.form-container {
+  max-width: 700px;
+  margin: 30px auto;
+  font-family: Arial, sans-serif;
+}
+
+.back-link {
+  text-decoration: none;
+  font-size: 14px;
+  color: #4b5563;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.form-card {
+  background: white;
+  border-radius: 8px;
+  padding: 25px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+.subtitle {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-top: 15px;
+}
+
+label {
+  font-size: 14px;
+  font-weight: 500;
+  color: #374151;
+  display: block;
+  margin-bottom: 5px;
+}
+
+input, select, textarea {
+  width: 100%;
+  padding: 16px 24px;
+  font-size: 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+}
+
+textarea {
+  min-height: 80px;
+}
+
+.salary-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.salary-input span {
+  padding: 16px 24px;
+  background: #f3f4f6;
+  font-size: 14px;
+  color: #4b5563;
+}
+
+.salary-input input {
+  border: none;
+  flex: 1;
+  padding: 16px 24px;
+}
+
+.salary-input input:focus {
+  outline: none;
+}
+
+.row {
+  display: flex;
+  gap: 20px;
+}
+
+.row .form-group {
+  flex: 1;
+}
+
+.auth_button {
+  margin-top: 25px;
+  text-align: right;
+}
+
+.btn-save {
+  background: var(--primary-color);
+  color: var(--bg-white);
+  border: none;
+  padding: 16px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.btn-save:hover {
+  background: var(--primary-hover);
+}
+
+/* Message d'erreur */
+.auth__error {
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: #d32f2f; /* Rouge d'erreur */
+  background-color: #fdecea; /* Fond rouge clair */
+  border-left: 4px solid #d32f2f;
+  padding: 6px 10px;
+  border-radius: 4px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pour espacer des autres éléments */
+.auth__input .auth__error {
+  margin-bottom: 5px;
+}
+
+/* Style du message global d'erreur (ex: identifiants incorrects) */
+.auth__container > .auth__error {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 500;
+}

@@ -1,0 +1,43 @@
+<div class="auth">
+    <div class="auth__container">
+
+        <form class="auth__form" (ngSubmit)="onSubmit()">
+        
+            <!-- En-tête -->
+            <div class="auth__header">
+                <div class="auth__logo">
+                    <img src="../../../assets/logo.png" alt="Logo Espace RH" />
+                </div>
+                <div class="auth__title">
+                    <h2>Mot de passe oublié ?</h2>
+                    <p>Veuillez entrer votre email pour recevoir un lien de réinitialisation de mot de passe.</p>
+                </div>
+            </div>
+
+            <!-- Champ Login -->
+            <div class="auth__input">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email"
+                    placeholder="ex: email@gmail.com" required
+                    formControlName="email"
+                />
+                <div *ngIf="form.get('email')?.invalid && (form.get('email')?.touched || form.get('email')?.dirty)" 
+                    class="auth__error">
+                    {{ form.get('email')?.errors?.['required'] ? 'Le email est requis.' : 'Le email est invalide.' }}
+                </div>
+            </div>
+
+            <!-- Bouton de connexion -->
+            <div class="auth__button">
+                <button type="submit" [disabled]="form.invalid">Envoyer un lien de réinitialisation</button>
+            </div>
+
+            <!-- Lien inscription -->
+            <div class="auth__text">
+                <p>Vous vous souvenez de votre mot de passe ? <a class="auth__link" href="/login">Se connecter</a></p>
+            </div>
+
+        </form>
+    </div>
+
+</div>

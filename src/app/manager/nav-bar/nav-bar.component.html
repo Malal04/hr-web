@@ -1,0 +1,21 @@
+<!--Navbar-->
+<nav>
+    <div class="nav-wr">
+        <div class="nav-wrapper">
+            <fa-icon [icon]="faMenu" (click)="toggleMenu()"></fa-icon>
+        </div>
+
+        <div class="nav-links" >
+            <div *ngIf="profile">
+                <p>{{ profile.nomComplete}}</p> 
+            </div>
+            <a class="profile"  routerLink="/manager" routerLinkActive="active">
+                <img 
+                src="../../../assets/logo.png"
+                alt="logo hotel" 
+                title="logo hotel"
+              />
+            </a>
+        </div>
+    </div>
+</nav>

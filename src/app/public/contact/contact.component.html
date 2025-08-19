@@ -1,0 +1,69 @@
+<div class="auth">
+    <div class="auth__container">
+
+        <form class="auth__form" (ngSubmit)="onSubmit()">
+        
+            <!-- En-tête -->
+            <div class="auth__header">
+                <div class="auth__logo">
+                    <img src="../../../assets/logo.png" alt="Logo Espace RH" />
+                </div>
+                <div class="auth__title">
+                    <h2>Contacter l'Administrateur</h2>
+                    <p>Pour toute question ou suggestion, veuillez contacter l'administrateur.</p>
+                </div>
+            </div>
+
+            <!-- Champ Login -->
+            <div class="auth__input">
+                <label for="subject">Sujet</label>
+                <input type="text" name="subject" id="subject"
+                    placeholder="••••••••••••••••" required
+                    formControlName="subject"
+                />
+                <div *ngIf="form.get('subject')?.invalid && (form.get('subject')?.touched || form.get('subject')?.dirty)" 
+                    class="auth__error">
+                    {{ form.get('subject')?.errors?.['required'] ? 'Le sujet est requis.' : 'Le sujet est invalide.' }}
+                </div>
+            </div>
+
+            <!-- Champ Confirmation mot de passe -->
+            <div class="auth__input">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email"
+                    placeholder="email@gmail.com" required
+                    formControlName="email"
+                />
+                <div *ngIf="form.get('email')?.invalid && (form.get('email')?.touched || form.get('email')?.dirty)" 
+                    class="auth__error">
+                    {{ form.get('email')?.errors?.['required'] ? 'L\'email est requis.' : 'L\'email est invalide.' }}
+                </div>
+            </div>
+
+            <!-- Champ Confirmation mot de passe -->
+            <div class="auth__input">
+                <label for="message">Message</label>
+                <input type="text" name="message" id="message"
+                    placeholder="••••••••••••••••" required
+                    formControlName="message"
+                />
+                <div *ngIf="form.get('message')?.invalid && (form.get('message')?.touched || form.get('message')?.dirty)" 
+                    class="auth__error">
+                    {{ form.get('message')?.errors?.['required'] ? 'Le message est requis.' : 'Le message est invalide.' }}
+                </div>
+            </div>
+
+            <!-- Bouton de connexion -->
+            <div class="auth__button">
+                <button type="submit" [disabled]="form.invalid">Envoyer</button>
+            </div>
+
+            <!-- Lien inscription -->
+            <div class="auth__text">
+                <p>Retourner à la page de connexion ? <a class="auth__link" href="/login">Se connecter</a></p>
+            </div>
+
+        </form>
+    </div>
+
+</div>

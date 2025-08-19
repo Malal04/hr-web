@@ -1,0 +1,66 @@
+<div class="auth">
+    <div class="auth__container">
+
+        <form class="auth__form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        
+            <!-- En-tête -->
+            <div class="auth__header">
+                <div class="auth__logo">
+                    <img src="../../../assets/logo.png" alt="Logo Espace RH" />
+                </div>
+                <div class="auth__title">
+                    <h2>Connexion à l’Espace RH</h2>
+                    <p>Veuillez entrer vos identifiants pour accéder à la plateforme.</p>
+                </div>
+            </div>
+
+            <!-- Champ Login -->
+            <div class="auth__input">
+                <label for="login">Login</label>
+                <input type="text" name="login" id="login"
+                    placeholder="ex: nom.prenom" required formControlName="login"
+                />
+                <div *ngIf="loginForm.get('login')?.invalid && (loginForm.get('login')?.touched || loginForm.get('login')?.dirty)" 
+                    class="auth__error">
+                    Le login est requis.
+                </div>
+            </div>
+
+            <!-- Champ Mot de passe -->
+            <div class="auth__input">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password"
+                    placeholder="••••••••••••••••" required formControlName="password"
+                />
+                <div *ngIf="loginForm.get('password')?.hasError('required') && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)" 
+                    class="auth__error">
+                    Le mot de passe est requis.
+                </div>
+                <div *ngIf="loginForm.get('password')?.hasError('minlength') && (loginForm.get('password')?.touched || loginForm.get('password')?.dirty)" 
+                    class="auth__error">
+                    Le mot de passe doit contenir au moins 5 caractères.
+                </div>
+            </div>
+
+            <!-- Lien mot de passe oublié -->
+            <div class="auth__oubli">
+                <a class="auth__link" href="/public/oublier">Mot de passe oublié ?</a>
+            </div>
+
+            <!-- Bouton de connexion -->
+            <div class="auth__button">
+                <button type="submit" [disabled]="loginForm.invalid">Se connecter</button>
+            </div>
+
+            <!-- Lien inscription -->
+            <div class="auth__text">
+                <p>Pas encore de compte ? <a class="auth__link" href="/public/contact">Contactez l’administrateur</a></p>
+            </div>
+
+        </form>
+        <div *ngIf="message" class="auth__error">
+            {{ message }}
+        </div>
+    </div>
+
+</div>

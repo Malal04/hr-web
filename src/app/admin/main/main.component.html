@@ -1,0 +1,123 @@
+<main>
+
+    <div class="header">
+        <div class="titre">
+            <h4 *ngIf="profile">Dashboard {{ profile.poste }}</h4>
+            <p class="subtitle" *ngIf="profile">Welcome back, {{ profile.nomComplete }}! Here's an overview of your HR activities.</p>
+        </div>
+        <div class="sous-titre">
+            <ul class="lis">
+                <li>
+                    <h6>Home</h6>
+                </li>
+                <li>
+                    <fa-icon [icon]="faArrowRight"></fa-icon>
+                </li>
+                <li>
+                    <h6>Dashboard</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="dashboard-cards">
+        
+        <div class="card blue">
+            <div class="icon">
+                <!-- Département -->
+                <fa-icon [icon]="faBuilding"></fa-icon>
+            </div>
+            <div class="label">Nbres de Département</div>
+            <div class="value">{{ totalDepartements }} départements</div>
+        </div>
+        
+        <div class="card green">
+            <div class="icon">
+                <!-- Employés -->
+                <fa-icon [icon]="faUsers"></fa-icon>
+            </div>
+            <div class="label">Nbres d'Employés</div>
+            <div class="value">{{ totalEmployes }} employés</div>
+        </div>
+        
+        <div class="card black">
+            <div class="icon">
+                <!-- Tâches en cours -->
+                <fa-icon [icon]="faTasks"></fa-icon>
+            </div>
+            <div class="label">Nbres de Tâches en cours</div>
+            <div class="value">{{ totalTachesEnCours }} tâches en cours</div>
+        </div>
+        
+        <div class="card red">
+            <div class="icon">
+                <!-- Tâches terminées / annulées -->
+                <fa-icon [icon]="faCheckCircle"></fa-icon>
+            </div>
+            <div class="label">Nbres de Tâches Terminées / Annulées</div>
+            <div class="value">{{ totalTachesTerminees }} / {{ totalTachesAnulees }} tâches</div>
+        </div>
+        
+
+    </div>
+
+    <div class="dashboard-touts">
+
+        <div class="group">
+            <h4>Journal des activités</h4>
+            <ul class="activities">
+                <li *ngFor="let log of logs">
+                    <span class="dot"></span>
+                    <div>
+                        <p>{{ log.action }}  {{ log.userName }}</p>
+                        
+                        <small>{{ log.timestamp | date:'short' }}</small>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="group">
+            <h3>Dernières tâches créées</h3>
+            <div class="tasks-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Titre</th>
+                            <th>Departement</th>
+                            <th>Manager</th>
+                            <th>Employés</th>
+                            <th>Date limite</th>
+                            <th>État</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let tache of dernieresTaches">
+                            <td>{{ tache.titre }}</td>
+                            <td>{{ tache.nomDepart }}</td>
+                            <td>{{ tache.creeParNom }}</td>
+                            <td>{{ tache.assigneANom }}</td>
+                            <td>{{ tache.dateLimite | date:'shortDate' }}</td>
+                            <td>
+                                <span class="etat"
+                                      [ngClass]="{
+                                        'encours': tache.etat === TacheEtat.EN_COURS,
+                                        'termine': tache.etat === TacheEtat.TERMINE,
+                                        'annule': tache.etat === TacheEtat.ANNULEE
+                                      }">
+                                  {{
+                                    tache.etat === TacheEtat.EN_COURS ? 'En cours' :
+                                    tache.etat === TacheEtat.TERMINE ? 'Termine' : 'Annule'
+                                  }}
+                                </span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    </div>
+
+</main>
+  

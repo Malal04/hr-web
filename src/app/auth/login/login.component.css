@@ -1,0 +1,168 @@
+/* Container principal */
+.auth {
+  background: url('../../../../public/res.png') center/cover no-repeat;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+}
+
+/* Carte de connexion */
+.auth__container {
+  background-color: var(--bg-white);
+  padding: 30px 25px;
+  border-radius: 12px;
+  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 590px;
+}
+
+/* Logo */
+.auth__logo {
+  text-align: center;
+}
+
+.auth__logo img {
+  width: 70px;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+/* Titre */
+.auth__title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.auth__title h2 {
+  font-size: 1.8rem;
+  color: var(--text-color);
+  margin-bottom: 5px;
+}
+
+.auth__title p {
+  font-size: 0.95rem;
+  color: #666;
+}
+
+/* Champs */
+.auth__input {
+  margin-bottom: 15px;
+}
+
+.auth__input label {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.auth__input input {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.auth__input input:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 5px rgba(255, 193, 7, 0.5);
+  outline: none;
+}
+
+/* Lien mot de passe oublié */
+.auth__oubli {
+  text-align: right;
+  margin-bottom: 20px;
+}
+
+.auth__link {
+  color: var(--primary-color);
+  font-size: 0.9rem;
+  text-decoration: none;
+}
+
+.auth__link:hover {
+  color: var(--primary-hover);
+  text-decoration: underline;
+}
+
+/* Bouton principal */
+.auth__button button {
+  width: 100%;
+  padding: 16px 24px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 600;
+  background-color: var(--primary-color);
+  color: var(--bg-white);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.auth__button button:hover {
+  background-color: var(--primary-hover);
+}
+
+/* Texte inscription */
+.auth__text {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+.auth__text p {
+  display: inline;
+  color: #555;
+}
+
+/* Responsive */
+@media screen and (max-width: 480px) {
+  .auth__container {
+    padding: 20px;
+  }
+
+  .auth__title h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* Message d'erreur */
+.auth__error {
+  margin-top: 5px;
+  font-size: 0.85rem;
+  color: #d32f2f; /* Rouge d'erreur */
+  background-color: #fdecea; /* Fond rouge clair */
+  border-left: 4px solid #d32f2f;
+  padding: 6px 10px;
+  border-radius: 4px;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animation d'apparition */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Pour espacer des autres éléments */
+.auth__input .auth__error {
+  margin-bottom: 5px;
+}
+
+/* Style du message global d'erreur (ex: identifiants incorrects) */
+.auth__container > .auth__error {
+  margin-top: 15px;
+  text-align: center;
+  font-weight: 500;
+}

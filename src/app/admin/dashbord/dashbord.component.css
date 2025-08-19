@@ -1,0 +1,74 @@
+/* Dashboard Layout - Mobile First */
+#sidebar {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: var(--sidebar-width);
+  height: 100%;
+  z-index: 2000;
+  transition: transform 0.3s ease;
+  overflow-x: hidden;
+  overflow-y: auto;
+  background: #F9F9F9;
+  transform: translateX(-100%);
+}
+
+#sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+#sidebar.show {
+  transform: translateX(0);
+}
+
+#sidebar.hide {
+  width: var(--sidebar-collapsed);
+  transform: translateX(0);
+}
+
+#sidebar.hide .side-menu li a {
+  width: calc(48px - (4px * 2));
+  transition: width 0.3s ease;
+}
+
+#content {
+  position: relative;
+  width: 100%;
+  left: 0;
+  transition: all 0.3s ease;
+  min-height: 100vh;
+}
+
+/* Mobile overlay for sidebar */
+.sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: 1999;
+  display: none;
+}
+
+.sidebar-overlay.show {
+  display: block;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  #sidebar {
+    transform: translateX(0);
+    position: fixed;
+  }
+  
+  #content {
+    width: calc(100% - var(--sidebar-width));
+    left: var(--sidebar-width);
+  }
+  
+  #sidebar.hide ~ #content {
+    width: calc(100% - var(--sidebar-collapsed));
+    left: var(--sidebar-collapsed);
+  }
+}

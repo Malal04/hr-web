@@ -1,0 +1,79 @@
+<div class="sideB">
+    <a routerLink="/manager" routerLinkActive="active" class="brand" (click)="onItemClick()">
+        <span class="text">RH-TD</span>
+    </a>
+
+    <div class="sideBI">
+        <ul class="side-menu top">
+            <li>
+                <a routerLink="/manager/menu" routerLinkActive="active" (click)="onItemClick()">
+                    <fa-icon [icon]="faDashboard"></fa-icon>
+                    <span class="text">Dashboard</span>
+                </a>
+            </li>
+            <!-- Employes -->
+            <li class="dropdown-container" *ngIf="canManageUsers">
+                <a (click)="toggleDropdown($event)">
+                    <fa-icon [icon]="faEmployees"></fa-icon>
+                    <span class="text">Employes</span>
+                    <fa-icon [icon]="faDropdown" class="dropdown-icon"></fa-icon>
+                </a>
+                <ul class="dropdown">
+                    <li>
+                        <a routerLink="/manager/employes/listes" routerLinkActive="active" (click)="onItemClick()">
+                            <fa-icon [icon]="faList"></fa-icon>
+                            <span>Liste des Employes</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a routerLink="/manager/employes/add" routerLinkActive="active" (click)="onItemClick()">
+                            <fa-icon [icon]="faAddUser"></fa-icon>
+                            <span>Ajouter un Employe</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- Taches -->
+            <li class="dropdown-container">
+                <a (click)="toggleDropdown($event)" >
+                    <fa-icon [icon]="faTasks"></fa-icon>
+                    <span class="text">Taches</span>
+                    <fa-icon [icon]="faDropdown" class="dropdown-icon"></fa-icon>
+                </a>
+                <ul class="dropdown">
+                    <li>
+                        <a routerLink="/manager/taches/listes" routerLinkActive="active" (click)="onItemClick()">
+                            <fa-icon [icon]="faList"></fa-icon>
+                            <span>Liste des Taches</span>
+                        </a>
+                    </li>
+                    <li *ngIf="canManageUsers">
+                        <a routerLink="/manager/taches/add" routerLinkActive="active" (click)="onItemClick()">
+                            <fa-icon [icon]="faAdd"></fa-icon>
+                            <span>Ajouter une Tache</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+
+    <div class="sideM">
+        <ul class="side-menu">
+            <li>
+                <a routerLink="/manager/profile" routerLinkActive="active" (click)="onItemClick()">
+                    <fa-icon [icon]="faUser"></fa-icon>
+                    <span class="text">Profile</span>
+                </a>
+            </li>
+            <li>
+                <a (click)="onLogout()" class="logout">
+                    <fa-icon [icon]="faLogout"></fa-icon>
+                    <span class="text">Déconnexion</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+</div>

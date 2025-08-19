@@ -1,0 +1,11 @@
+<section id="sidebar" [class.show]="isSidebarVisible" [class.hide]="!isSidebarVisible && !isMobile">
+  <app-side-bar  (closeSidebar)="closeSidebar()"></app-side-bar>
+</section>
+
+<div class="sidebar-overlay" [class.show]="isSidebarVisible && isMobile" (click)="closeSidebar()"></div>
+
+<section id="content">
+  <app-nav-bar (toggleSidebar)="toggleSidebar()"></app-nav-bar>
+
+  <router-outlet></router-outlet>
+</section>

@@ -1,0 +1,55 @@
+<div class="profil-container">
+  <h2>Profil Employé</h2>
+
+  <!-- Carte Profil -->
+  <div class="profil-card">
+    <img src="assets/avatar.png" alt="Photo de profil" class="profil-avatar" />
+
+    <div class="profil-info" *ngIf="profile">
+      <h3>{{ profile.nomComplete }}</h3>
+      <p>{{ profile.email }}</p>
+      <p>
+        <strong>Poste:</strong> {{ profile.poste }},
+        <strong>Date d'embauche:</strong> {{ profile.dateEmbauche | date:'yyyy-MM-dd' }}
+      </p>
+    </div>
+  </div>
+
+  <!-- Tâches récentes -->
+  <div class="tasks-section">
+    <h3>Tâches Récentes</h3>
+
+    <table class="tasks-table">
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Priorité</th>
+          <th>Statut</th>
+          <th>Date d'échéance</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let task of dernieresTaches">
+          <td>{{ task.titre }}</td>
+          <td>
+            <span class="status" [ngClass]="getPriorityLabel(task.priority).toLowerCase()">
+              {{ getPriorityLabel(task.priority) }}
+            </span>
+          </td>
+          <td>
+            <span class="status" [ngClass]="getEtatLabel(task.etat).toLowerCase()">
+              {{ getEtatLabel(task.etat) }}
+            </span>
+          </td>
+          <td>{{ task.dateLimite | date: 'yyyy-MM-dd' }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bouton -->
+  <button type="button" class="btn-password">
+    <fa-icon [icon]="faLock"></fa-icon>
+    Modifier mot de passe
+  </button>
+</div>

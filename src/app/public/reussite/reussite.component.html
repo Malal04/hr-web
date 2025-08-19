@@ -1,0 +1,56 @@
+<div class="auth">
+    <div class="auth__container">
+
+        <form class="auth__form" (ngSubmit)="onSubmit()">
+        
+            <!-- En-tête -->
+            <div class="auth__header">
+                <div class="auth__logo">
+                    <img src="../../../assets/logo.png" alt="Logo Espace RH" />
+                </div>
+                <div class="auth__title">
+                    <h2>Reinitialisation du mot de passe</h2>
+                    <p>Veuillez saisir votre nouveau mot de passe.</p>
+                </div>
+            </div>
+
+            <!-- Champ Login -->
+            <div class="auth__input">
+                <label for="password">Mot de passe</label>
+                <input type="password" name="password" id="password"
+                    placeholder="••••••••••••••••" required
+                    formControlName="password"
+                />
+                <div *ngIf="form.get('password')?.invalid && (form.get('password')?.touched || form.get('password')?.dirty)" 
+                    class="auth__error">
+                    {{ form.get('password')?.errors?.['required'] ? 'Le mot de passe est requis.' : 'Le mot de passe est invalide.' }}
+                </div>
+            </div>
+
+            <!-- Champ Confirmation mot de passe -->
+            <div class="auth__input">
+                <label for="confirmPassword">Confirmation mot de passe</label>
+                <input type="password" name="confirmPassword" id="confirmPassword"
+                    placeholder="••••••••••••••••" required
+                    formControlName="confirmPassword"
+                />
+                <div *ngIf="form.get('confirmPassword')?.invalid && (form.get('confirmPassword')?.touched || form.get('confirmPassword')?.dirty)" 
+                    class="auth__error">
+                    {{ form.get('confirmPassword')?.errors?.['required'] ? 'Le mot de passe est requis.' : 'Le mot de passe est invalide.' }}
+                </div>
+            </div>
+
+            <!-- Bouton de connexion -->
+            <div class="auth__button">
+                <button type="submit" [disabled]="form.invalid">Reinitialiser le mot de passe</button>
+            </div>
+
+            <!-- Lien inscription -->
+            <div class="auth__text">
+                <p>Vous vous souvenez de votre mot de passe ? <a class="auth__link" href="/login">Se connecter</a></p>
+            </div>
+
+        </form>
+    </div>
+
+</div>

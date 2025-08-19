@@ -1,0 +1,126 @@
+/* Navbar - Mobile First Responsive */
+nav {
+  height: 56px;
+  background: #fff;
+  padding: 0 var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-wr {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.nav-wrapper {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+nav a {
+  color: var(--bg-black);
+  text-decoration: none;
+}
+
+.nav-wrapper fa-icon {
+  font-size: 20px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  color: var(--bg-black);
+  padding: 8px;
+}
+  
+.nav-wrapper fa-icon:hover {
+  color: var(--primary-hover);
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+nav .profile img {
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  transition: border 0.3s ease;
+}
+
+nav .profile img:hover {
+  border: 2px solid var(--primary-hover);
+}
+
+/* Mobile adjustments */
+@media (max-width: 480px) {
+  nav {
+    height: 50px;
+    padding: 0 var(--space-sm);
+  }
+  
+  .nav-wrapper fa-icon {
+    font-size: 18px;
+    padding: 6px;
+  }
+  
+  .nav-links {
+    gap: 8px;
+  }
+  
+  nav .profile img {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+/* Tablet */
+@media (min-width: 768px) {
+  nav {
+    padding: 0 var(--space-lg);
+  }
+  
+  .nav-wrapper fa-icon {
+    font-size: 25px;
+  }
+  
+  .nav-links {
+    gap: 20px;
+  }
+  
+  nav .profile img {
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  nav {
+    padding: 0 var(--space-xl);
+  }
+}
+
+/* Hide hamburger menu on larger screens where sidebar is always visible */
+@media (min-width: 768px) {
+  .nav-wrapper {
+    display: block;
+  }
+}
+
+/* Show hamburger menu only on mobile */
+@media (max-width: 767px) {
+  .nav-wrapper {
+    display: flex;
+  }
+}

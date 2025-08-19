@@ -1,0 +1,127 @@
+<div class="container-taches">
+  <div class="tache-list">
+    <h2>Liste des tâches</h2>
+  
+    <!-- Filtres -->
+    <div class="filters">
+      <input
+        type="text"
+        placeholder="Rechercher un employé..."
+        [(ngModel)]="employe"
+      />
+  
+      <!-- Statut : on envoie un nombre (enum) ou null -->
+      <select [(ngModel)]="statut" aria-label="Statut" id="statut">
+        <option [ngValue]="null">Tous</option>
+        <option [ngValue]="TacheEtat.EN_COURS">En cours</option>
+        <option [ngValue]="TacheEtat.TERMINE">Terminée</option>
+        <option [ngValue]="TacheEtat.ANNULEE">Annulée</option>
+      </select>
+  
+      <input
+        type="date"
+        aria-label="Date limite"
+        [(ngModel)]="dateLimiteBefore"
+        id="dateLimiteBefore"
+      />
+  
+      <button type="button" (click)="rechercher()">🔍 Rechercher</button>
+      
+    </div>
+  
+    <!-- Loading / Erreur -->
+    <div *ngIf="loading">Chargement...</div>
+    <div *ngIf="error" class="error">{{ error }}</div>
+  
+    <!-- Table des tâches -->
+    <table *ngIf="!loading && taches.length">
+      <div *ngIf="!loading && taches.length === 0" class="error">
+        Aucune tâche trouvée.
+      </div>
+      <thead>
+        <tr>
+          <th>Titre</th>
+          <th>Description</th>
+          <th>Assigné à</th>
+          <th>Manager</th>
+          <th>Date limite</th>
+          <th>Priorité</th>
+          <th>Statut</th>
+          <th>Valider</th>
+          <th *ngIf="canManageUsers">Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of taches">
+          <td>{{ t.titre }}</td>
+          <td>{{ t.description }}</td>
+          <td>{{ t.assigneANom }}</td>
+          <td>{{ t.creeParNom }}</td>
+          <td>{{ t.dateLimite | date : 'shortDate' }}</td>
+          <td>
+            <span 
+              class="badge"
+              [ngClass]="{
+                'badge-basse': t.priority === PriorityEtat.Basse,
+                'badge-moyenne': t.priority === PriorityEtat.Moyenne,
+                'badge-haute': t.priority === PriorityEtat.Haute,
+                'badge-urgente': t.priority === PriorityEtat.Urgente
+              }">
+              {{ t.priority === PriorityEtat.Basse ? 'Basse' :
+                 t.priority === PriorityEtat.Moyenne ? 'Moyenne' :
+                 t.priority === PriorityEtat.Haute ? 'Haute' :
+                 'Urgente' }}
+            </span>
+          </td>
+          <td>
+            <span 
+              class="badge"
+              [ngClass]="{
+                'badge-en-cours': t.etat === TacheEtat.EN_COURS,
+                'badge-termine': t.etat === TacheEtat.TERMINE,
+                'badge-annulee': t.etat === TacheEtat.ANNULEE
+              }">
+              {{ t.etat === TacheEtat.EN_COURS ? 'En cours' :
+                 t.etat === TacheEtat.TERMINE ? 'Terminée' : 'Annulée' }}
+            </span>
+          </td>   
+          <td>
+            <!-- Validation -->
+            <ng-container *ngIf="t.etat === TacheEtat.EN_COURS">
+              <button type="button" (click)="terminer(t.id!)" class="btn-action success">
+                <fa-icon [icon]="faCheck"></fa-icon>
+              </button>
+              <button type="button" (click)="annuler(t.id!)" class="btn-action danger" *ngIf="canManageUsers">
+                <fa-icon [icon]="faTimes"></fa-icon>
+              </button>
+            </ng-container>
+          </td>
+          <td *ngIf="canManageUsers">
+            <!-- Édition / Suppression visibles seulement si la tâche est encore active -->
+            <ng-container *ngIf="t.etat === TacheEtat.EN_COURS">
+              <button type="button" (click)="editTache(t.id!)" class="btn-action edit">
+                <fa-icon [icon]="faPen"></fa-icon>
+              </button>
+              <button type="button" (click)="supprimer(t.id!)" class="btn-action delete">
+                <fa-icon [icon]="faTrash"></fa-icon>
+              </button>
+            </ng-container>
+          </td>          
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="!loading && taches.length === 0" class="empty">
+      Aucune tâche trouvée.
+    </div>
+  
+    <!-- Pagination -->
+    <div *ngIf="!loading && totalItems > pageSize" class="pagination">
+      <button type="button" (click)="prevPage()" [disabled]="page === 1">⬅ Précédent</button>
+      <span>Page {{ page }} / {{ (totalItems / pageSize) | number:'1.0-0' }}</span>
+      <button type="button" (click)="nextPage()" [disabled]="page * pageSize >= totalItems">Suivant ➡</button>
+    </div>
+  
+  
+  </div>  
+</div>

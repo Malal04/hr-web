@@ -1,0 +1,60 @@
+<div class="container-departement">
+  <header class="header-departement">
+    <h1>Gestion des départements</h1>
+  </header>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Nom DT</th>
+        <th>Responsable DT</th>
+        <th>Téléphone DT</th>
+        <th>Email DT</th>
+        <th>Budget</th>
+        <th>Localisation</th>
+        <th>Nbre emp.</th>
+        <th>Statut</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let departement of departements">
+        <td>{{ departement.nom }}</td>
+        <td>{{ departement.managerNom }}</td>
+        <td>{{ departement.contactPhone }}</td>
+        <td>{{ departement.contactEmail }}</td>
+        <td>{{ departement.budget | number:'1.0-0' }}</td>
+        <td>{{ departement.location }}</td>
+        <td>{{ departement.employeeCount }}</td>
+        <td>
+          <span *ngIf="departement.status === 1" class="status-active">Actif</span>
+          <span *ngIf="departement.status !== 1" class="status-inactive">Inactif</span>
+        </td>
+        <td>
+          <button type="button" class="toggle-btn" (click)="toggleStatus(departement)">
+            <fa-icon [icon]="departement.status === DepartementStatus.Active ? faToggleOn : faToggleOff"></fa-icon>
+          </button>        
+          <!-- Bouton éditer -->
+          <button type="button" class="edit-btn" (click)="editDepartement(departement)">
+            <fa-icon [icon]="faPen"></fa-icon>
+          </button>
+        
+          <!-- Bouton supprimer -->
+          <button type="button" class="delete-btn" (click)="deleteDepartement(departement)">
+            <fa-icon [icon]="faTrash"></fa-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="pagination">
+    <button type="button" (click)="prevPage()" [disabled]="page === 1">Précédent</button>
+    <span>Page {{ page }} sur {{ totalPages }}</span>
+    <button type="button" (click)="nextPage()" [disabled]="page === totalPages">Suivant</button>
+  </div>
+
+  <div *ngIf="loading">Chargement...</div>
+  <div *ngIf="error" class="error-message">{{ error }}</div>
+
+</div>

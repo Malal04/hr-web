@@ -1,0 +1,67 @@
+<div class="form-container">
+  <a routerLink="/admin/taches/listes" class="back-link">← Retour à la liste des tâches</a>
+
+  <div class="form-card">
+    <h2>Créer une nouvelle tâche</h2>
+    <p class="subtitle">Remplissez les informations pour ajouter une nouvelle tâche.</p>
+
+    <form [formGroup]="tacheForm" (ngSubmit)="onSubmit()">
+
+      <div class="form-group">
+        <label for="titre">Titre</label>
+        <input id="titre" type="text" formControlName="titre" placeholder="Ex: Préparer la réunion RH">
+        <div *ngIf="tacheForm.get('titre')?.invalid && tacheForm.get('titre')?.touched" class="auth__error">
+          Le titre est requis.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="description">Description</label>
+        <textarea id="description" formControlName="description" placeholder="Ex: Préparer les documents RH..."></textarea>
+        <div *ngIf="tacheForm.get('description')?.invalid && tacheForm.get('description')?.touched" class="auth__error">
+          La description est requise.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="dateLimite">Date limite</label>
+        <input id="dateLimite" type="date" formControlName="dateLimite">
+        <div *ngIf="tacheForm.get('dateLimite')?.invalid && tacheForm.get('dateLimite')?.touched" class="auth__error">
+          La date limite est requise.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="priority">Priorité</label>
+        <select id="priority" formControlName="priority">
+          <option [ngValue]="PriorityEtat.Basse">Basse</option>
+          <option [ngValue]="PriorityEtat.Moyenne">Moyenne</option>
+          <option [ngValue]="PriorityEtat.Haute">Haute</option>
+          <option [ngValue]="PriorityEtat.Urgente">Urgente</option>
+        </select>
+        <div *ngIf="tacheForm.get('priority')?.invalid && tacheForm.get('priority')?.touched" class="auth__error">
+          La priorité est requise.
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="assigneAId">Assigner à</label>
+        <select id="assigneAId" formControlName="assigneAId">
+          <option [ngValue]="null">-- Choisir un employé --</option>
+          <option *ngFor="let emp of employes" [ngValue]="emp.id">
+            {{ emp.nomComplete }} {{ emp.departementCode ? '('+emp.departementCode+')' : '' }}
+          </option>
+        </select>
+        <div *ngIf="tacheForm.get('assigneAId')?.invalid && tacheForm.get('assigneAId')?.touched" class="auth__error">
+          L'employé assigné est requis.
+        </div>
+      </div>
+
+      <div class="form-group auth_button">
+        <button class="btn-save" type="submit" [disabled]="tacheForm.invalid">Créer</button>
+      </div>
+    </form>
+
+    <div *ngIf="message" class="auth__error">{{ message }}</div>
+  </div>
+</div>
